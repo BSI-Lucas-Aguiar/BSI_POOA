@@ -1,0 +1,53 @@
+<!-- 
+Lucas de Figueiredo Aguiar - Programação Orientada a Objetos Aplicada
+Tarefa de JS
+2-Construa uma página que interaja com o usuário e realize algum cálculo utilizando o JavaScript, 
+fornecendo a resposta (exemplos: Transformação Polegadas->Centimetros; Cálculo de IMC; 
+Cálculo de Áreas ou Volumes de Objetos, Cálculo de Imposto de Renda).
+
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa JS 2 - POOA - Lucas de Figueiredo Aguiar</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <h1>Tarefa JS 2 - Lucas de Figueiredo Aguiar</h1>
+    <h2>Cálculo de área de Objetos</h2>
+    <div id="circulo">
+        <h3>Círculo</h3>
+        <img src="circulo.png" alt="circulo" width=60 height=60>
+        <br>
+        <input type="text" id="raio" placeholder="Informe o valor do raio.">
+        <br>
+        <input type="button" onclick="calcularCirculo()" id="botaoCirculo" value="Calcular área do Circulo.">
+    </div>
+
+    <div id="quadrado">
+        <h3>Quadrado</h3>
+        <img src="quadrado.png" alt="quadrado" width=60 height=60>
+        <br>
+        <input type="text" id="lado" placeholder="Informe o valor do lado.">
+        <br>
+        <input type="button" onclick="calcularQuadrado()" id="botaoQuadrado" value="Calcular área do Quadrado.">
+    </div>
+    
+    <div id="retangulo">
+        <h3>Retângulo</h3>
+        <img src="retangulo.png" alt="retangulo" width=40 height=60>
+        <br>
+        <input type="text" id="base" placeholder="Informe o valor da base.">
+        <br>
+        <input type="text" id="altura" placeholder="Informe o valor da altura.">
+        <br>
+        <input type="button" onclick="calcularRetangulo()" id="botaoRetangulo" value="Calcular área do Retangulo.">
+    </div>
+
+</body>
+
+</html>
