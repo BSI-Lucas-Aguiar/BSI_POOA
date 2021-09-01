@@ -25,8 +25,8 @@ Cálculo de Áreas ou Volumes de Objetos, Cálculo de Imposto de Renda).
     <h1>Tarefa JS - Lucas de Figueiredo Aguiar</h1>
     <div id="texto">
         <label>Digite o texto:</label>
-        <input type="text" class="" placeholder="Texto Exemplo.">
-        <input type="button" value="Incluir">
+        <input type="text" id="textoAdicionar" placeholder="Texto Exemplo.">
+        <input type="button" onclick="adicionarTexto('tabela')" id="botaoAdicionar" value="Incluir Texto">
     </div>
     <br>
 
@@ -35,12 +35,9 @@ Cálculo de Áreas ou Volumes de Objetos, Cálculo de Imposto de Renda).
             <caption>Lista de Elementos</caption>
             <tr>
                 <th>Texto</th>
+                <th>Ação</th>
             </tr>
-            <tr>
-                <td>
-    
-                </td>
-            </tr>
+            <!-- Uma nova tr é adicionada ao chamar a função adicionarTexto no script.js -->
         </table>
 
     </div>
