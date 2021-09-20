@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho de Vue - Lucas de Figueiredo Aguiar</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="script.js"></script>
+    <script src="scriptVue.vue"></script>
+
+</head>
+<body>
+    
+    
+
+    <div id="geral">
+        <h1>Trabalho de Vue - Lucas de Figueiredo Aguiar</h1>
+        <div id="formulario">
+            <label><span>Tipo:</span>
+                <select name="tipo" v-model="tipo">
+                    <option value="Lancha">Lancha</option>
+                    <option value="Iate">Iate</option>
+                    <option value="JetSki">JetSki</option>
+                    </select>
+            </label>
+            <label><span>Nome:</span>
+                <input type="text" v-model="nome"/>
+            </label>
+            <label><span>Valor:</span>
+                <input type="number" min="0" max="9999999" v-model="valor"/>
+            </label>
+            <button @click="cadastrarEmbarcacao()">Adicionar Embarcação</button>
+        </div>
+        <br>
+        <div id="listaEmbarcacoes">
+            <table  border="1px">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                </tr>
+                <tr v-for="e in embarcacoes">
+                    <td>{{e.tipo}}</td>
+                    <td>{{e.nome}}</td>
+                    <td>{{e.valor}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#geral',
+        data: {
+            tipo: '',
+            nome: '',
+            valor: null,
+            embarcacoes:[]
+        },
+        methods: {
+            cadastrarEmbarcacao(){
+                this.embarcacoes.push({tipo: this.tipo, nome: this.nome, valor: this.valor})
+         }
+    }
+    })
+</script>
+</html>
