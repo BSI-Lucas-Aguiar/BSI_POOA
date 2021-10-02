@@ -13,30 +13,12 @@
 
 </head>
 <body>
-    
-    
-
-    <div id="geral">
+    <div id="app">
         <h1>Trabalho de Vue - Lucas de Figueiredo Aguiar</h1>
-        <div id="formulario">
-            <label><span>Tipo:</span>
-                <select name="tipo" v-model="tipo">
-                    <option value="Lancha">Lancha</option>
-                    <option value="Iate">Iate</option>
-                    <option value="JetSki">JetSki</option>
-                    </select>
-            </label>
-            <label><span>Nome:</span>
-                <input type="text" v-model="nome"/>
-            </label>
-            <label><span>Valor:</span>
-                <input type="number" min="0" max="9999999" v-model="valor"/>
-            </label>
-            <button @click="cadastrarEmbarcacao()">Adicionar Embarcação</button>
-        </div>
-        <br>
+        <formulario :tipo="tipo" :nome="nome" :valor="valor" @embarcacoes="cadastrarEmbarcacao"></formulario>
+
         <div id="listaEmbarcacoes">
-            <table  border="1px">
+            <table>
                 <tr>
                     <th>Tipo</th>
                     <th>Nome</th>
@@ -50,21 +32,30 @@
             </table>
         </div>
     </div>
+    
+    
+
+    <template id="form">
+        <div id="formulario">
+                <label><span>Tipo:</span>
+                    <select name="type" v-model="tipo">
+                        <option value="Lancha">Lancha</option>
+                        <option value="Iate">Iate</option>
+                        <option value="JetSki">JetSki</option>
+                        </select>
+                </label>
+                <label><span>Nome:</span>
+                    <input type="text" v-model="nome"/>
+                </label>
+                <label><span>Valor:</span>
+                    <input type="number" min="0" max="9999999" v-model="valor"/>
+                </label>
+                <button @click="addEmbarcacao(tipo, nome, valor)">Adicionar Embarcação</button>
+        </div>
+    </template>
+
+    <script src="vue.js">//Criado por Lucas de Figueiredo Aguiar</script>
 </body>
-<script>
-    var app = new Vue({
-        el: '#geral',
-        data: {
-            tipo: '',
-            nome: '',
-            valor: null,
-            embarcacoes:[]
-        },
-        methods: {
-            cadastrarEmbarcacao(){
-                this.embarcacoes.push({tipo: this.tipo, nome: this.nome, valor: this.valor})
-         }
-    }
-    })
-</script>
+
+
 </html>
