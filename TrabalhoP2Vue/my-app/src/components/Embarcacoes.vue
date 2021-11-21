@@ -120,7 +120,7 @@
           //Alteracao
           axios
             .put(
-              "http://localhost:3000/embarcacoes/" + this.editedIndex,
+              "http://localhost:3000/embarcacoes/" + this.editedItem.id,
               this.editedItem
             )
             .then((response) => {
