@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="users"
+    :items="embarcacoes"
     sort-by="calories"
     class="elevation-1"
   >
@@ -74,7 +74,7 @@
 <script>
   import axios from "axios";
   export default {
-    name: "UserCrud",
+    name: "Embarcacoes",
     data: () => ({
       dialog: false,
       headers: [
@@ -84,7 +84,7 @@
         { text: "Valor", value: "valor" },
         { text: "Actions", value: "actions", sortable: false },
       ],
-      users: [{id: "", marca: "", modelo: "", valor: 0 }],
+      embarcacoes: [{id: "", marca: "", modelo: "", valor: 0 }],
       editedIndex: -1,
       editedItem: {
         id: "",
@@ -102,9 +102,9 @@
     }),
     methods: {
       inicializa() {
-        axios("http://localhost:3000/users")
+        axios("http://localhost:3000/embarcacoes")
           .then((response) => {
-            this.users = response.data;
+            this.embarcacoes = response.data;
           })
           .catch((error) => console.log(error));
       },
@@ -120,40 +120,40 @@
           //Alteracao
           axios
             .put(
-              "http://localhost:3000/users/" + this.editedIndex,
+              "http://localhost:3000/embarcacoes/" + this.editedIndex,
               this.editedItem
             )
             .then((response) => {
               console.log(response);
-              Object.assign(this.users[this.editedIndex], this.editedItem);
+              Object.assign(this.embarcacoes[this.editedIndex], this.editedItem);
               this.close();
             })
             .catch((error) => console.log(error));
         } else {
           //Inclusao
           axios
-            .post("http://localhost:3000/users", this.editedItem)
+            .post("http://localhost:3000/embarcacoes", this.editedItem)
             .then((response) => {
               console.log(response);
-              this.users.push(this.editedItem);
+              this.embarcacoes.push(this.editedItem);
               this.close();
             })
             .catch((error) => console.log(error));
         }
       },
       editItem(item) {
-        this.editedIndex = this.users.indexOf(item);
+        this.editedIndex = this.embarcacoes.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.dialog = true;
       },
       deleteItem(item) {
-        const index = this.users.indexOf(item);
+        const index = this.embarcacoes.indexOf(item);
         confirm("Deseja apagar este item?") &&
           axios
-            .delete("http://localhost:3000/users/" + item.id)
+            .delete("http://localhost:3000/embarcacoes/" + item.id)
             .then((response) => {
               console.log(response.data);
-              this.users.splice(index, 1);
+              this.embarcacoes.splice(index, 1);
             })
             .catch((error) => console.log(error));
       },
