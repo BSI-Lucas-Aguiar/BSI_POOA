@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "marca": "Kawasaki",
+      "modelo": "Jet Ski",
+      "valor": "80000"
+    },
+    {
+      "id": "2",
+      "marca": "Fibrafort",
+      "modelo": "Lancha",
+      "valor": "1000000"
+    },
+    {
+      "id": "3",
+      "marca": "Azimut",
+      "modelo": "Iate",
+      "valor": "50000000"
+    }
+  ]
+}
