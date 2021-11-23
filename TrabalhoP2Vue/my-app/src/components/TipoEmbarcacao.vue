@@ -83,18 +83,7 @@
       },
     }),
     methods: {
-    /*Importar a descrição
-    tipoEmb(id){
-      var tipoEmb = this.tipoEmbarcacao.find((x) => x.id ===id);
-      tipoEmb = tipoEmb ? tipoEmb.tipoEmb : "Tipo inválido";
-      return tipoEmb;
-    }, */
       inicializa() {
-        /*axios("http://localhost:3000/embarcacoes")
-          .then((response) => {
-            this.embarcacoes = response.data;
-          })
-          .catch((error) => console.log(error));*/
         axios("http://localhost:3000/tipoEmbarcacao")
           .then((response) => {
             this.tipoEmbarcacao = response.data;
