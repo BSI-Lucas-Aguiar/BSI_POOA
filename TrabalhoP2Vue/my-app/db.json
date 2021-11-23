@@ -3,20 +3,48 @@
     {
       "id": "1",
       "marca": "Kawasaki",
-      "modelo": "Jet Ski",
-      "valor": "80000"
+      "modelo": "Opa",
+      "valor": "80000",
+      "tipo": 2
     },
     {
       "id": "2",
       "marca": "Fibrafort",
       "modelo": "Lancha",
-      "valor": "1000000"
+      "valor": "2000000",
+      "tipo": 3
     },
     {
       "id": "3",
       "marca": "Azimut",
       "modelo": "Iate",
-      "valor": "50000000"
+      "valor": "50000000",
+      "tipo": 2
+    },
+    {
+      "id": "4",
+      "marca": "Salve",
+      "modelo": "Bora",
+      "tipo": "4",
+      "valor": "800000"
+    }
+  ],
+  "tipoEmbarcacao": [
+    {
+      "id": 1,
+      "tipoEmb": "Jet Ski"
+    },
+    {
+      "id": 2,
+      "tipoEmb": "Lancha"
+    },
+    {
+      "id": 3,
+      "tipoEmb": "Iate"
+    },
+    {
+      "id": "4",
+      "tipoEmb": "Helicóptero"
     }
   ]
 }

@@ -1,19 +1,19 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="embarcacoes"
+    :items="tipoEmbarcacao"
     sort-by="id"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat>
-        <v-toolbar-title>Embarcações Cadastradas</v-toolbar-title>
+        <v-toolbar-title>Tipos de Embarcação</v-toolbar-title>
         <v-divider class="mx-4" insert vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" rounded dark class="mb-2" v-bind="attrs" v-on="on">
-              Nova Embarcação
+              Novo Tipo
             </v-btn>
           </template>
           <v-card>
@@ -30,37 +30,13 @@
                       label="Id"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="5" md="5">
+                  <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.marca"
-                      label="Marca"
+                      v-model="editedItem.tipoEmb"
+                      label="Tipo de Embarcação"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="5" md="5">
-                    <v-text-field
-                      v-model="editedItem.modelo"
-                      label="Modelo"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="12" sm="4" md="4">
-                    <v-select
-                      v-model="editedItem.tipo"
-                      :items="tipoEmbarcacao"
-                      label="Tipo da Embarcação"
-                      item-text="tipoEmb"
-                      item-value="id"
-                      return-value
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12" sm="4" md="4">
-                    <v-text-field
-                      v-model="editedItem.valor"
-                      label="Valor"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
+                </v-row>  
               </v-container>
             </v-card-text>
 
@@ -80,58 +56,45 @@
     <template v-slot:no-data>
       <v-btn color="primary" dark @click="inicializa"> Reset </v-btn>
     </template>
-    <template v-slot:[`item.tipo`]="{ item }">
-      {{ tipoEmb(item.tipo) }}
-    </template>
   </v-data-table>
 </template>
 
 <script>
   import axios from "axios";
   export default {
-    name: "Embarcacoes",
+    name: "TipoEmbarcacao",
     data: () => ({
       dialog: false,
       headers: [
         { text: "Id", value: "id" },
-        { text: "Marca", value: "marca" },
-        { text: "Modelo", value: "modelo" },
-        { text: "Tipo", value: "tipo" },
-        { text: "Valor", value: "valor" },
+        { text: "Tipo", value: "tipoEmb" },
         { text: "Actions", value: "actions", sortable: false },
       ],
-      tipoEmbarcacao:[],
-      embarcacoes: [{id: "", marca: "", modelo: "", valor: 0 }],
+      tipoEmbarcacao:[{id: "", tipoEmb: ""}],
       editedIndex: -1,
       editedItem: {
         id: "",
-        marca: "",
-        modelo: "",
-        tipo: "",
-        valor: "",
+        tipoEmb: "",
       },
       editedItemIndex: -1,
       defaultItem: {
         id: "",
-        marca: "",
-        modelo: "",
-        tipo: "",
-        valor: "",
+        tipoEmb: "",
       },
     }),
     methods: {
-      //Puxar A descricao de cada Modelo
+    /*Importar a descrição
     tipoEmb(id){
       var tipoEmb = this.tipoEmbarcacao.find((x) => x.id ===id);
       tipoEmb = tipoEmb ? tipoEmb.tipoEmb : "Tipo inválido";
       return tipoEmb;
-    },
+    }, */
       inicializa() {
-        axios("http://localhost:3000/embarcacoes")
+        /*axios("http://localhost:3000/embarcacoes")
           .then((response) => {
             this.embarcacoes = response.data;
           })
-          .catch((error) => console.log(error));
+          .catch((error) => console.log(error));*/
         axios("http://localhost:3000/tipoEmbarcacao")
           .then((response) => {
             this.tipoEmbarcacao = response.data;
@@ -150,47 +113,47 @@
           //Alteracao
           axios
             .put(
-              "http://localhost:3000/embarcacoes/" + this.editedItem.id,
+              "http://localhost:3000/tipoEmbarcacao/" + this.editedItem.id,
               this.editedItem
             )
             .then((response) => {
               console.log(response);
-              Object.assign(this.embarcacoes[this.editedIndex], this.editedItem);
+              Object.assign(this.tipoEmbarcacao[this.editedIndex], this.editedItem);
               this.close();
             })
             .catch((error) => console.log(error));
         } else {
           //Inclusao
           axios
-            .post("http://localhost:3000/embarcacoes", this.editedItem)
+            .post("http://localhost:3000/tipoEmbarcacao", this.editedItem)
             .then((response) => {
               console.log(response);
-              this.embarcacoes.push(this.editedItem);
+              this.tipoEmbarcacao.push(this.editedItem);
               this.close();
             })
             .catch((error) => console.log(error));
         }
       },
       editItem(item) {
-        this.editedIndex = this.embarcacoes.indexOf(item);
+        this.editedIndex = this.tipoEmbarcacao.indexOf(item);
         this.editedItem = Object.assign({}, item);
         this.dialog = true;
       },
       deleteItem(item) {
-        const index = this.embarcacoes.indexOf(item);
+        const index = this.tipoEmbarcacao.indexOf(item);
         confirm("Deseja apagar este item?") &&
           axios
-            .delete("http://localhost:3000/embarcacoes/" + item.id)
+            .delete("http://localhost:3000/tipoembarcacao/" + item.id)
             .then((response) => {
               console.log(response.data);
-              this.embarcacoes.splice(index, 1);
+              this.tipoEmbarcacao.splice(index, 1);
             })
             .catch((error) => console.log(error));
       },
     },
     computed: {
       formTitle() {
-        return this.editedIndex === -1 ? "Nova Embarcação" : "Editar Embarcação";
+        return this.editedIndex === -1 ? "Novo Tipo de Embarcação" : "Editar Tipo";
       },
     },
 
